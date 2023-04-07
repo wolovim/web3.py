@@ -9,6 +9,100 @@ with links to learn more. You may also be interested in the
 :ref:`Examples <examples>` page, which demonstrates some of these features in
 greater detail.
 
+.. NOTES/TODO
+.. - Reading blockchain data
+  .. + block number
+  .. + get_block
+  .. + get_transaction
+.. - sending transactions:
+  .. + send ether
+  .. + interact with contracts
+  .. + deploy contracts
+.. - utilities, like from_wei
+.. - often, use it under the hood, e.g., via Ape
+
+
+Reading blockchain data
+~~~~~~~~~~~~~~~~~~~~~~~
+
+For starters, you can use web3.py to lookup the lastest block number, the data within
+any given block, or contents of any given transaction:
+
+- :meth:`web3.eth.block_number <web3.eth.Eth.block_number>`
+- :meth:`web3.eth.get_block(number) <web3.eth.Eth.get_block>`
+- :meth:`web3.eth.get_transaction(tx_hash) <web3.eth.Eth.get_transaction>`
+
+See the ``web3.eth`` API for the full list of :doc:`available methods <web3.eth>`.
+
+
+Sending transactions
+~~~~~~~~~~~~~~~~~~~~
+
+Broadly, there are three categories of Ethereum transactions:
+
+- sending ether from an account you control,
+- deploying a new smart contract, and
+- interacting with a deployed contract
+
+
+Sending Ether
+-------------
+
+:meth:`web3.eth.send_transaction` or :meth:`web3.eth.send_raw_transaction`
+
+
+Deploying a Contract
+--------------------
+
+You can deploy a contract using the ``send_transaction`` or ``send_raw_transaction`` methods,
+but a more convenient option is to ... TODO
+
+
+Interacting with a Contract
+---------------------------
+
+TODO
+
+
+Utility Functions
+~~~~~~~~~~~~~~~~~
+
+The :ref:`Web3 <web3_base>` class includes a number of convenient utility functions
+in the base API. You're most likely to utilize the currency conversions.
+
+
+Currency Conversions
+--------------------
+
+- :meth:`Web3.from_wei() <web3.Web3.from_wei>`
+- :meth:`Web3.to_wei() <web3.Web3.to_wei>`
+
+
+Encoding and Decoding Helpers
+-----------------------------
+
+- :meth:`Web3.is_encodable() <web3.w3.is_encodable>`
+- :meth:`Web3.to_bytes() <web3.Web3.to_bytes>`
+- :meth:`Web3.to_hex() <web3.Web3.to_hex>`
+- :meth:`Web3.to_int() <web3.Web3.to_int>`
+- :meth:`Web3.to_json() <web3.Web3.to_json>`
+- :meth:`Web3.to_text() <web3.Web3.to_text>`
+
+
+Address Helpers
+---------------
+
+- :meth:`Web3.is_address() <web3.Web3.is_address>`
+- :meth:`Web3.is_checksum_address() <web3.Web3.is_checksum_address>`
+- :meth:`Web3.to_checksum_address() <web3.Web3.to_checksum_address>`
+
+
+Cryptographic Hashing
+---------------------
+
+- :meth:`Web3.keccak() <web3.Web3.keccak>`
+- :meth:`Web3.solidity_keccak() <web3.Web3.solidity_keccak>`
+
 
 Configuration
 ~~~~~~~~~~~~~
@@ -105,43 +199,6 @@ transactions.
 Full documentation on the distinction between keys can be found :ref:`here <eth-account>`.
 
 
-Base API
-~~~~~~~~
-
-The :ref:`Web3 <web3_base>` class includes a number of convenient utility functions:
-
-
-Encoding and Decoding Helpers
------------------------------
-
-- :meth:`Web3.is_encodable() <web3.w3.is_encodable>`
-- :meth:`Web3.to_bytes() <web3.Web3.to_bytes>`
-- :meth:`Web3.to_hex() <web3.Web3.to_hex>`
-- :meth:`Web3.to_int() <web3.Web3.to_int>`
-- :meth:`Web3.to_json() <web3.Web3.to_json>`
-- :meth:`Web3.to_text() <web3.Web3.to_text>`
-
-
-Address Helpers
----------------
-
-- :meth:`Web3.is_address() <web3.Web3.is_address>`
-- :meth:`Web3.is_checksum_address() <web3.Web3.is_checksum_address>`
-- :meth:`Web3.to_checksum_address() <web3.Web3.to_checksum_address>`
-
-
-Currency Conversions
---------------------
-
-- :meth:`Web3.from_wei() <web3.Web3.from_wei>`
-- :meth:`Web3.to_wei() <web3.Web3.to_wei>`
-
-
-Cryptographic Hashing
----------------------
-
-- :meth:`Web3.keccak() <web3.Web3.keccak>`
-- :meth:`Web3.solidity_keccak() <web3.Web3.solidity_keccak>`
 
 
 web3.eth API
@@ -219,7 +276,7 @@ functions on a deployed contract.
 Deployment requires that the contract already be compiled, with its bytecode and ABI
 available. This compilation step can be done within
 `Remix <http://remix.ethereum.org/>`_ or one of the many contract development
-frameworks, such as `Brownie <https://eth-brownie.readthedocs.io/>`_.
+frameworks, such as `Ape <https://docs.apeworx.io/ape/stable/>`_.
 
 Once the contract object is instantiated, calling ``transact`` on the
 :meth:`constructor <web3.contract.Contract.constructor>` method will deploy an
